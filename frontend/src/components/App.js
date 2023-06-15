@@ -11,7 +11,6 @@ import EditProfilePopup from './EditProfilePopup'
 import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
 import Api from '../utils/Api';
-import * as Auth from "../utils/Auth";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import ProtectedRouteElement from './ProtectedRoute';
 
@@ -45,7 +44,7 @@ function App() {
   }, []);
 
   function handleLogin({ email, password }) {
-    return Auth.authorize(email, password)
+    return Api.authorize(email, password)
       .then((data) => {
         if (data.token) {
           localStorage.setItem("jwt", data.token);
@@ -66,7 +65,7 @@ function App() {
   }
 
   function handleRegister({ email, password }) {
-    return Auth.register(email, password)
+    return Api.register(email, password)
       .then(() => {
         navigate("/sign-in");
         setInfoTooltipData({
@@ -87,7 +86,7 @@ function App() {
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      Auth.getContent(jwt)
+      Api.getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
           setUserData({

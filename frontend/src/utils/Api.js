@@ -1,3 +1,5 @@
+export const BASE_URL = "https://api.kostinpract.students.nomoredomains.rocks";
+
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -91,14 +93,50 @@ class Api {
     })
       .then(res => this._checkResponse(res));
   }
+
+  getResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  register(email, password) {
+    return fetch(`${BASE_URL}/signup`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ email, password }),
+    }).then(this.getResponse);
+  }
+
+  authorize(email, password) {
+    return fetch(`${BASE_URL}/signin`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ email, password }),
+    })
+      .then(this.getResponse)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem('jwt', data.token);
+          this._headers['Authorization'] = `Bearer ${data.token}`;
+          return data;
+        }
+      });
+  }
+
+  getContent(token) {
+
+    return fetch(`${BASE_URL}/users/me`, {
+      method: "GET",
+      headers: this._headers,
+    }).then(this.getResponse);
+  }
 }
 
 // создать инстанс АПИ
 const api = new Api({
-  baseUrl: 'https://api.kostinpract.students.nomoredomains.rocks',
+  baseUrl: `${BASE_URL}`,
   headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    Accept: "application/json",
+    "Content-Type": "application/json",
   }
 });
 
