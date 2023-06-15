@@ -28,8 +28,7 @@ mongoose.connect(MONGOURI);
 app.use(requestLogger); // подключаем логгер запросов
 
 app.use(cors());
-
-app.options('*', cors());
+// app.options('*', cors());
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
