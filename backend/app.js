@@ -13,7 +13,7 @@ const { MONGOURI, PORT, REGEXPR } = require('./config');
 
 const app = express();
 
-app.use(cors);
+app.use(cors());
 // app.options('*', cors());
 app.use(helmet());
 app.use(bodyParser.json());
