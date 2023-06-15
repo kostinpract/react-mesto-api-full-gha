@@ -94,16 +94,13 @@ class Api {
       .then(res => this._checkResponse(res));
   }
 
-  getResponse(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
-  }
-
   register(email, password) {
     return fetch(`${BASE_URL}/signup`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ email, password }),
-    }).then(this.getResponse);
+    })
+      .then(this._checkResponse);
   }
 
   authorize(email, password) {
@@ -112,7 +109,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({ email, password }),
     })
-      .then(this.getResponse)
+      .then(this._checkResponse)
       .then((data) => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
@@ -123,11 +120,11 @@ class Api {
   }
 
   getContent(token) {
-
     return fetch(`${BASE_URL}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then(this.getResponse);
+    })
+      .then(this._checkResponse);
   }
 }
 
