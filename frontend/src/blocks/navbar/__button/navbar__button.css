@@ -1,0 +1,13 @@
+.navbar__button {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: #A9A9A9;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.navbar__button:hover {
+  opacity: 0.8;
+}

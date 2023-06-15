@@ -1,0 +1,11 @@
+.register__form-field {
+  display: block;
+  width: 100%;
+  background: none;
+  font-size: 14px;
+  padding-bottom: 13px;
+  color: #ccc;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  margin-top: 30px;
+}
