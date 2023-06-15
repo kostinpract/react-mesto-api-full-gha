@@ -45,10 +45,8 @@ function App() {
   }, []);
 
   function handleLogin({ email, password }) {
-    console.log(email, password)
     return Auth.authorize(email, password)
       .then((data) => {
-        console.log(data);
         if (data.token) {
           localStorage.setItem("jwt", data.token);
           setUserData({
@@ -92,10 +90,9 @@ function App() {
       Auth.getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
-          // console.log('result of GetContent in TokenCheck', res)
           setUserData({
-            email: res.data.email,
-            _id: res.data._id,
+            email: res.email,
+            _id: res._id
           })
           navigate("/");
         })
@@ -121,7 +118,7 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     Api.changeLike(card._id, isLiked)
@@ -156,7 +153,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    if (card.owner._id === currentUser._id) {
+    if (card.owner === currentUser._id) {
       Api.removeCard(card._id)
         .then(() => {
           setCards((state) => state.filter((c) => c._id !== card._id));
