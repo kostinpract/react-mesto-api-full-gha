@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
-const cors = require('cors')
+const cors = require('cors');
 const { errors, celebrate, Joi } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { loginUser, createUser } = require('./controllers/users');
@@ -13,7 +13,7 @@ const { MONGOURI, PORT, REGEXPR } = require('./config');
 
 const app = express();
 
-app.use(cors());
+app.use(cors);
 // app.options('*', cors());
 app.use(helmet());
 app.use(bodyParser.json());
