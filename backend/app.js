@@ -13,6 +13,8 @@ const { MONGOURI, PORT, REGEXPR } = require('./config');
 
 const app = express();
 
+app.use(cors());
+// app.options('*', cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,9 +28,6 @@ app.use(rateLimit({
 mongoose.connect(MONGOURI);
 
 app.use(requestLogger); // подключаем логгер запросов
-
-app.use(cors());
-// app.options('*', cors());
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
