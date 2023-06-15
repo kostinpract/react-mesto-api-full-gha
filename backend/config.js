@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const prod = process.env.NODE_ENV === 'production';
 const SECRET = prod ? process.env.JWT_SECRET : 'super-strong-secret';
 const { PORT = 3000 } = process.env.PORT;
