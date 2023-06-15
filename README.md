@@ -1,20 +1,19 @@
 [![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 
 # react-mesto-api-full
+
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`.
+
+* git pull
+* pm2 restart app
+* npm run build
 
 Адрес репозитория: https://github.com/kostinpract/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес 46.253.143.101
+IP 46.253.143.101
 
-Frontend https://kostinpract.students.nomoredomains.rocks/
+Frontend https://kostinpract.students.nomoredomains.rocks
 
-Backend https://api.kostinpract.students.nomoredomains.rocks/
-
-## Перезапуск
-
-* git pull
-* pm2 restart app
-* npm run build
+Backend https://api.kostinpract.students.nomoredomains.rocks
