@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
+const cors = require('cors')
 const { errors, celebrate, Joi } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { loginUser, createUser } = require('./controllers/users');
@@ -25,6 +26,10 @@ app.use(rateLimit({
 mongoose.connect(MONGOURI);
 
 app.use(requestLogger); // подключаем логгер запросов
+
+app.use(cors());
+
+app.options('*', cors());
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
