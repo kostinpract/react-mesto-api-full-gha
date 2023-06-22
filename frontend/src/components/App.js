@@ -91,7 +91,10 @@ function App() {
           setLoggedIn(true);
           setUserData({
             email: res.email,
-            _id: res._id
+            _id: res._id,
+            name: res.name,
+            about: res.about,
+            avatar: res.avatar,
           })
           navigate("/");
         })
