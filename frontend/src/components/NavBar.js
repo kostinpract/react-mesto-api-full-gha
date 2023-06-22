@@ -7,6 +7,8 @@ function NavBar({ ...props }) {
   function signOut() {
     localStorage.removeItem('jwt');
     navigate('sign-in');
+    props.setLoggedIn(false);
+    props.setCurrentUser({});
   }
 
   return (

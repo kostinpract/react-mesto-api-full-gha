@@ -11,7 +11,16 @@ function Header({ ...props }) {
         <Routes>
           <Route
             path="/"
-            element={<NavBar userData={props.userData} />}
+            element={
+              <NavBar
+                userData={props.userData}
+                setUserData={props.setUserData}
+                loggedIn={props.loggedIn}
+                setLoggedIn={props.setLoggedIn}
+                currentUser={props.currentUser}
+                setCurrentUser={props.setCurrentUser}
+              />
+            }
           />
           <Route
             path="/sign-up"

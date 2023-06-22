@@ -207,7 +207,14 @@ function App() {
       <div className="body">
         <div className="page">
 
-          <Header userData={userData} />
+          <Header
+            userData={userData}
+            setUserData={setUserData}
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
 
           <Routes>
             <Route
